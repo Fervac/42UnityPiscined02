@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Tile
   - footman
+  - orcFishery
+  - orcSpawn
+  - orcFarm
+  - orcTower
+  - orcFactory
   layers:
   - Default
   - TransparentFX

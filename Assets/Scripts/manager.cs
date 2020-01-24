@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class manager : MonoBehaviour
+public class Manager : MonoBehaviour
 {
 	public List<GameObject> goodguys = new List<GameObject>();
 	public float buildinghp = 100;
@@ -25,12 +25,16 @@ public class manager : MonoBehaviour
 							Debug.Log("already selected");
 						}
 						else
+						{
 							goodguys.Add(hit.collider.gameObject);
+						}
 					}
 					else
 					{
 						if (goodguys.Count == 0)
+						{
 							goodguys.Add(hit.collider.gameObject);
+						}
 						else
 						{
 							goodguys.Clear();
@@ -41,7 +45,7 @@ public class manager : MonoBehaviour
 				else
 				{
 					if (goodguys.Count != 0)
-						attack(hit.collider.gameObject);
+						Attack(hit.collider.gameObject);
 				}
 			}
 
@@ -50,12 +54,12 @@ public class manager : MonoBehaviour
 			goodguys.Clear();
 	}
 
-	void attack(GameObject cible)
+	void Attack(GameObject cible)
 	{
 		foreach (GameObject goodguy in goodguys)
 		{
-			goodguy.GetComponent<controller>().cible = cible;
-			goodguy.GetComponent<controller>().attack = true;
+			goodguy.GetComponent<Controller>().cible = cible;
+			goodguy.GetComponent<Controller>().attack = true;
 		}
 	}
 }

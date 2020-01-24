@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controller : MonoBehaviour
+public class Controller : MonoBehaviour
 {
 	public Animator animator;
 	public float speed = 1.5f;
@@ -12,44 +12,50 @@ public class controller : MonoBehaviour
 	Vector3 dir;
 	AudioSource audioS;
 	public AudioClip[] audioClips;
-	GameObject Manager;
-	manager script;
+	GameObject manager;
+	Manager script;
 	public bool attack = false;
 	public GameObject cible;
 
-    void Start ()
+    void Start()
 	{
-		Manager = GameObject.Find("Manager");
+		manager = GameObject.Find("Manager");
 		target = transform.position;
 		sr = GetComponent<SpriteRenderer>();
 		audioS = GetComponent<AudioSource>();
-		script = Manager.GetComponent<manager>();
+		script = manager.GetComponent<Manager>();
 	}
 
-     void Update ()
+     void Update()
 	 {
 		if(script.goodguys.Contains(this.gameObject))
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
 				audioS.clip = audioClips[Random.Range(0, audioClips.Length)];
-				//audioS.Play();
+				audioS.Play();
 				target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z * -1));
 	            target.z = transform.position.z;
 				dir = target - transform.position;
 				if (dir.x < 0)
+				{
 					sr.flipX = true;
+				}
 				else
+				{
 					sr.flipX = false;
-	         }
-	         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-			 animator.SetFloat("Horizontal", dir.x);
-			 animator.SetFloat("Vertical", dir.y);
-			 tmp = target - transform.position;
-			 animator.SetFloat("Magnitude", tmp.magnitude);
+				}
+	        }
+	        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+			animator.SetFloat("Horizontal", dir.x);
+			animator.SetFloat("Vertical", dir.y);
+			tmp = target - transform.position;
+			animator.SetFloat("Magnitude", tmp.magnitude);
 
-			 if (attack == true && cible)
-			 	attackMethod();
+			if (attack == true && cible)
+			{
+				AttackMethod();
+			}
 		 }
 		 else
 		 {
@@ -61,10 +67,10 @@ public class controller : MonoBehaviour
 
 		 if (cible)
 		 {
-			 if (cible.GetComponent<buildingHP>().hp <= 0)
+			 if (cible.GetComponent<BuildingHP>().hp <= 0)
 			 {
 	 			Destroy(cible);
-				addSpawnTime();
+				AddSpawnTime();
 	 			cible = null;
 	 			attack = false;
 	 			animator.SetFloat("Attack", 0f);
@@ -72,35 +78,34 @@ public class controller : MonoBehaviour
 		}
      }
 
-	 void attackMethod()
+	 void AttackMethod()
 	 {
-		 //transform.position = Vector3.MoveTowards(transform.position, cible.transform.position, speed * Time.deltaTime);
 		 float dist = Vector3.Distance(cible.transform.position, transform.position);
 		 if (dist < .5f)
 		 {
 			 animator.SetFloat("Attack", 1f);
-			 StartCoroutine(damage());
+			 StartCoroutine(Damage());
 		 }
 	 }
 
-	 IEnumerator damage()
+	 IEnumerator Damage()
 	 {
 		yield return new WaitForSeconds(2);
 		if (cible)
 		{
-			cible.GetComponent<buildingHP>().hp -= 10;
-			Debug.Log(cible.name + " " + cible.GetComponent<buildingHP>().hp + " HP left");
+			cible.GetComponent<BuildingHP>().hp -= 10;
+			Debug.Log(cible.name + " " + cible.GetComponent<BuildingHP>().hp + " HP left");
 		}
 	 }
 
-	 void addSpawnTime()
+	 void AddSpawnTime()
 	 {
 		 if (cible.name == "orcFarm" || cible.name == "orcFishery"
 		 	|| cible.name == "orcTower" || cible.name == "orcFactory"
 				|| cible.name == "orcSpawn")
 		{
 			GameObject tmp = GameObject.Find("orcSpawn");
-			tmp.GetComponent<spawning>().spawnTime += 2.5f;
+			tmp.GetComponent<Spawning>().spawnTime += 2.5f;
 		}
 
 		if (cible.name == "humanFarm" || cible.name == "humanFishery"
@@ -108,7 +113,7 @@ public class controller : MonoBehaviour
 			   || cible.name == "humanSpawn")
 	   {
 		   GameObject tmp = GameObject.Find("humanSpawn");
-		   tmp.GetComponent<spawning>().spawnTime += 2.5f;
+		   tmp.GetComponent<Spawning>().spawnTime += 2.5f;
 	   }
 	}
 }

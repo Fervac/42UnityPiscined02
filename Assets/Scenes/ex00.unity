@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 295227780}
   m_Layer: 0
   m_Name: orcSpawn
-  m_TagString: Untagged
+  m_TagString: orcSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 303760421}
   m_Layer: 0
   m_Name: orcFishery
-  m_TagString: Untagged
+  m_TagString: orcFishery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 771696713}
   m_Layer: 0
   m_Name: orcFarm
-  m_TagString: Untagged
+  m_TagString: orcFarm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 1428287504}
   m_Layer: 0
   m_Name: orcFactory
-  m_TagString: Untagged
+  m_TagString: orcFactory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1271,7 +1271,7 @@ GameObject:
   - component: {fileID: 1851900561}
   m_Layer: 0
   m_Name: orcTower
-  m_TagString: Untagged
+  m_TagString: orcTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

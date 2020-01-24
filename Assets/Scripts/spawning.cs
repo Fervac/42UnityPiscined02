@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawning : MonoBehaviour
+public class Spawning : MonoBehaviour
 {
 	public GameObject humanPrefab;
     public GameObject orcPrefab;
@@ -15,18 +15,22 @@ public class spawning : MonoBehaviour
 	{
 		spawnTime = 10f;
 		if (this.gameObject.name == "humanSpawn")
+		{
 			prefab = humanPrefab;
+		}
 
 		if (this.gameObject.name == "orcSpawn")
+		{
 			prefab = orcPrefab;
+		}
 
 		offset = new Vector3(0f, 1.5f, 0f);
 		offset = transform.position - offset;
 
-		StartCoroutine(spawn());
+		StartCoroutine(Spawn());
 	}
 
-	IEnumerator spawn()
+	IEnumerator Spawn()
     {
 		while (true)
 		{

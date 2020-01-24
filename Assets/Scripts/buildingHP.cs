@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buildingHP : MonoBehaviour
+public class BuildingHP : MonoBehaviour
 {
 	public float hp;
 
     void Start()
     {
-		if (this.gameObject.name == "orcFarm")
+		if (this.CompareTag("orcFarm"))
+		{
 			hp = 30;
-		if (this.gameObject.name == "orcFishery")
+		}
+		if (this.CompareTag("orcFishery"))
+		{
 			hp = 30;
-		if (this.gameObject.name == "orcTower")
+		}
+		if (this.CompareTag("orcTower"))
+		{
 			hp = 30;
-		if (this.gameObject.name == "orcFactory")
+		}
+		if (this.CompareTag("orcFactory"))
+		{
 			hp = 40;
-		if (this.gameObject.name == "orcSpawn")
+		}
+		if (this.CompareTag("orcSpawn"))
+		{
 			hp = 200;
+		}
     }
 }
